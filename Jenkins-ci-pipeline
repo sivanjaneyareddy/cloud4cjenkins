@@ -16,9 +16,9 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('code coverage') {
+        stage('code quality') {
             steps {
-                echo "code coverage testing"
+                sh 'mvn checkstyle:checkstyle'
             }
         }
         stage('code quality sonar') {
