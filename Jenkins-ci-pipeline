@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    stages {
+        stage('code from scm') {
+            steps {
+                echo "geeting the code from repo"
+            }
+        }
+        stage('building the code') {
+            steps {
+                echo "geeting the code from repo"
+            }
+        }
+        stage('unit test') {
+            steps {
+                echo "unit testing"
+            }
+        }
+        stage('code coverage') {
+            steps {
+                echo "code coverage testing"
+            }
+        }
+        stage('code quality sonar') {
+            steps {
+                echo "sonar integration"
+            }
+        }
+    }
+}
