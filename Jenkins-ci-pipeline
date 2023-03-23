@@ -3,17 +3,17 @@ pipeline {
     stages {
         stage('code from scm') {
             steps {
-                echo "geeting the code from repo"
+               git credentialsId: 'git-key', url: 'git@github.com:gopal1409/spring-chat-app-oct.git'
             }
         }
         stage('building the code') {
             steps {
-                echo "geeting the code from repo"
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('unit test') {
             steps {
-                echo "unit testing"
+                sh 'mvn test'
             }
         }
         stage('code coverage') {
