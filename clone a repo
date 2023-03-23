@@ -1,0 +1,11 @@
+ 19  git clone https://github.com/gopal1409/spring-chat-app-oct.git
+   20  cd spring-chat-app-oct/
+   22  rm -rf .git
+   23  git config --global user.name "gopal"
+   24  git config --global user.email "gopal1409@gmail.com"
+   25  git init
+   26  git add .
+   27  git commit -m "intial commit"
+   28  ssh-keygen -t rsa
+   ##########3once you got the key you need to copy the key and put it in github
+   
