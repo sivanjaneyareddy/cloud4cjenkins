@@ -1,0 +1,16 @@
+
+    2  sudo apt-get update
+    3  sudo apt-get install     ca-certificates     curl     gnupg     lsb-release
+    4  sudo mkdir -p /etc/apt/keyrings
+    5  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    6  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    7  sudo apt-get update
+    8  docker volume create sonarqube-conf
+    9  docker volume create sonarqube-logs
+   10  docker volume create sonarqube-extensions
+   11  mkdir /sonarqube
+   12  ln -s /var/lib/docker/volumes/sonarqube-conf/_data /sonarqube/conf
+   13  ln -s /var/lib/docker/volumes/sonarqube-data/_data /sonarqube/data
+   14  ln -s /var/lib/docker/volumes/sonarqube-extensions/_data /sonarqube/extensions
+   15  docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 -v sonarqube-conf:/opt/sonarqube/conf -v sonarqube-data:/opt/sonarqube/data -v sonarqube-logs:/opt/sonarqube/logs -v sonarqube-extensions:/opt/sonarqube/extensions sonarqube
+   16  docker ps
