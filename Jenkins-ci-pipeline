@@ -24,8 +24,13 @@ pipeline {
         }
         stage('code quality sonar') {
             steps {
-                echo "sonar integration"
+               sh "mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=gopal-sonar-project \
+  -Dsonar.host.url=http://3.142.94.123:9000 \
+  -Dsonar.login=sqp_b5b3bf9498dcc9302ef980bc4cbdf9b4c03ab75b"
             }
         }
     }
+    
+    
 }
