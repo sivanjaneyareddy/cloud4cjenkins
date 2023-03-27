@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('code from scm') {
+            steps {
+               git credentialsId: 'git-key', url: 'git@github.com:gopal1409/spring-chat-app-oct.git'
+            }
+        }
+        stage('building the code') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('docker image jib') {
+            steps {
+                sh 'mvn compile jib:dockerBuild'
+            }
+        }
+        
+    }
+    
+    
+}
