@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        registry = '3.129.14.90:8081/chatapp'
+        registry = '18.191.175.108:8085/chatapp'
         registryCredentials = 'nexus-id'
         dockerImage = ''
         shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
@@ -21,7 +21,17 @@ pipeline {
         stage('docker custom build') {
             steps {
                 script {
-                    dockerImage = docker.build registry + "-"+"-"+"$BUILD_NUMBER"+"-"+"$shortCommit"
+                    dockerImage = docker.build registry + "$shortCommit"
+                }
+            }
+        }
+        stage('docker push nexus') {
+            steps {
+                script {
+                    // This step should not normally be used in your script. Consult the inline help for details.
+                        withDockerRegistry(credentialsId: 'nexus-id', url: 'http://18.191.175.108:8085') {
+                                dockerImage.push()
+                          }
                 }
             }
         }
