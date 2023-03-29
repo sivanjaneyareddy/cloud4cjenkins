@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('scm get') {
+            steps {
+                 git 'https://github.com/gopal1409/ansible-tomcat-pipeline-new.git'
+            }
+        }
+        stage('ansible run') {
+            steps {
+                ansiblePlaybook credentialsId: 'jenkins-ansible', disableHostKeyChecking: true, inventory: 'dev.inv', playbook: 'tomcat.yml'
+            }
+        }
+    }
+}
