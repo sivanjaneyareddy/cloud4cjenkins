@@ -1,0 +1,23 @@
+####below mentioned activity need to done on jenkins slave server 
+sudo -i
+apt-get update
+apt install default-jdk
+###create a user 
+sudo adduser jenkins --shell /bin/bash
+####create a password after creating paswword press enter enter 
+##3login as jenkins user
+su jenkins
+###create a directory called as jenkins
+mkdir /home/jenkins/jenkins_slave
+
+####setup jenkins slave using ssh keys
+#####to do the same loging to slave server as jenkins user
+mkdir ~/.ssh && cd ~/.ssh 
+#####create the ssh key in slave machine only
+ssh-keygen -t rsa -C "the access key for jenkins slave"
+######add the public key to authorized key
+ 4  ssh-keygen -t rsa -C "the access key for jenkins slave"
+    5  cat id_rsa.pub >> ~/.ssh/authorized_keys
+    6  cat id_rsa
+    #####once you get the private key we need to add the nodes using jenkins master server
+
