@@ -1,0 +1,28 @@
+agentName = "agent101"
+def hotLabel = "agent007"
+agentLabel = "${print 'Right Now the agent name is' + agentName; return agentName}"
+pipeline {
+    agent any
+    stages {
+        stage('code from scm') {
+            steps {
+               git credentialsId: 'git-key', url: 'git@github.com:gopal1409/spring-chat-app-oct.git'
+            }
+        }
+        stage('building the code') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('test the code') {
+            agent {label "${hotLabel}"}
+            steps {
+                sh 'mvn test'
+            }
+        }
+       
+        
+    }
+    
+    
+}
