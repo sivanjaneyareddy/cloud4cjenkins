@@ -17,7 +17,7 @@ pipeline {
         stage('test the code') {
             agent {label "${hotLabel}"}
             steps {
-                sh 'mvn test'
+                echo "node_name: ${hotLabel}"
             }
         }
        
