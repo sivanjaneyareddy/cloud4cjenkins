@@ -1,0 +1,4 @@
+###first verify your terraform code using terraform init and apply
+https://github.com/gopal1409/terraform-alb-vpc-cloud4c.git
+#####once verified upload the same in your version control system. 
+###once upload generate secret key and access key from aws
