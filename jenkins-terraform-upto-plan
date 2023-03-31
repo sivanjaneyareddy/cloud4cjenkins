@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('checkout') {
+            steps {
+                script{
+                    dir("terraform"){
+                    git 'https://github.com/gopal1409/terraform-alb-vpc-cloud4c.git'
+                    }
+                }
+            }
+        }
+        stage('init') {
+            steps {
+                script{
+                   sh 'terraform init -input=false'
+                }
+            }
+        }
+         stage('plan') {
+            steps {
+                withAWS(credentials: 'aws-gopal', region: 'us-east-1') {
+    // some block
+
+                script{
+                   sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
+                   sh 'terraform plan -input=false -out tfplan'
+                   sh 'terraform show -no-color tfplan > tfplan.txt'
+                }
+                }
+            }
+        }
+    }
+}
