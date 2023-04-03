@@ -1,0 +1,33 @@
+ 20  git clone https://github.com/gopal1409/springtomcatchatapp.git
+   21  ls
+   22  cd springtomcatchatapp/
+   23  rm -rf .git
+   24  ls
+   25  git init
+   26  git add .
+   27  git commit -m "master branch"
+   28  git config --global user.name "gopal"
+   29  git config --global user.email "gopal1409@gmail.com"
+   31  ssh-keygen -t rsa
+   32  cat /root/.ssh/id_rsa.pub
+    40  git remote add origin git@github.com:gopal1409/multibuild-cloud4c.git
+   41  git push origin master
+   42  vi Jenkinsfile
+   43  git add .
+   44  git commit -m "jenkins file added"
+   45  git push origin master
+   46  clear
+   47  git status
+   48  git log
+   49  git branch dev
+   50  git checkout dev
+   51  vi Jenkinsfile 
+   52  git add .
+   53  git commit -m "multi build pipelie"
+   54  git branch
+   55  git checkout master
+   56  git branch stage
+   57  vi Jenkinsfile 
+   58  git add .
+   59  git commit -m "modified staging area"
+   60  git push origin --all
